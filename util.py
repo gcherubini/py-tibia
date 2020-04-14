@@ -50,11 +50,25 @@ def dateTimeStr():
 def log(msg):
     print(dateTimeStr() + " " + msg)
 
+def waitGetMouseStoppedInWater():
+    oldPosition = Position(x=0, y=0, color="")
+    newPosition = None
+    while newPosition is None:
+        print("continue com o mouse parado...")
+        oldPosition = newPosition
+        pos = pyautogui.position()
+        newPosition = Position(x=pos.x, y=pos.y, color=rgbToHex(pyautogui.pixel(pos.x,pos.y)))
+        time.sleep(3)
+
+    print("posição identificada!")
+    return newPosition
+
+
 def waitGetMouseStopped():
     oldPosition = Position(x=0, y=0, color="")
     newPosition = None
     while newPosition is None or oldPosition != newPosition:
-        print("continue parado...")
+        print("continue com o mouse parado...")
         oldPosition = newPosition
         pos = pyautogui.position()
         newPosition = Position(x=pos.x, y=pos.y, color=rgbToHex(pyautogui.pixel(pos.x,pos.y)))
