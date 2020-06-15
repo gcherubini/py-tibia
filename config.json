@@ -1,1 +1,1 @@
-{"battlePos": {"color": "#1b1b1b", "py/object": "util.Position", "x": 1739, "y": 124}, "foodPos": {"color": "#957a5e", "py/object": "util.Position", "x": 1255, "y": 484}, "manaPos": {"color": "#3535c8", "py/object": "util.Position", "x": 1509, "y": 94}, "py/object": "util.Config"}
+{"battlePos": {"color": "#161717", "py/object": "util.Position", "x": 1540, "y": 159}, "foodPos": {"color": "#926e44", "py/object": "util.Position", "x": 1828, "y": 206}, "manaPos": {"color": "#3535c8", "py/object": "util.Position", "x": 1205, "y": 86}, "py/object": "util.Config"}

@@ -2,7 +2,7 @@ import pyautogui
 import time
 import util
 
-pyautogui.PAUSE = 0.2
+pyautogui.PAUSE = 0.15
 pyautogui.FAILSAFE = True
 
 def moveToAndClick(pos, rightClick):
@@ -20,6 +20,7 @@ def fishing(fishingRodPos, fishingPos1, fishingPos2, fishingPos3, fishingPos4, f
     moveToAndClick(fishingRodPos, True)
     moveToAndClick(fishingPos2, False)
     moveToAndClick(fishingRodPos, True)
+    time.sleep(1)
     moveToAndClick(fishingPos3, False)
     moveToAndClick(fishingRodPos, True)
     moveToAndClick(fishingPos4, False)
@@ -27,35 +28,35 @@ def fishing(fishingRodPos, fishingPos1, fishingPos2, fishingPos3, fishingPos4, f
     moveToAndClick(fishingPos5, False)
     print("comendo...")
     moveToAndClick(eatPos, True)
-    time.sleep(1)
+    time.sleep(0.5)
 
 def start():
     print("Posicione o mouse onde está sua vara de pescar...")
-    time.sleep(1)
+    time.sleep(0.5)
     fishingRodPos = util.waitGetMouseStopped()
 
     print("Posicione o mouse na água onde deve pescar...")
-    time.sleep(1)
+    time.sleep(0.5)
     fishingPos1 = util.waitGetMouseStoppedInWater()
 
     print("Posicione o mouse na água em outro lugar onde deve pescar..." )
-    time.sleep(1)
+    time.sleep(0.5)
     fishingPos2 = util.waitGetMouseStoppedInWater()
 
     print("Posicione o mouse na água em outro lugar onde deve pescar..." )
-    time.sleep(1)
+    time.sleep(0.5)
     fishingPos3 = util.waitGetMouseStoppedInWater()
 
     print("Posicione o mouse na água em outro lugar onde deve pescar..." )
-    time.sleep(1)
+    time.sleep(0.5)
     fishingPos4 = util.waitGetMouseStoppedInWater()
 
     print("Posicione o mouse na água em outro lugar onde deve pescar..." )
-    time.sleep(1)
+    time.sleep(0.5)
     fishingPos5 = util.waitGetMouseStoppedInWater()
 
     print("Posicione o mouse onde está sua comida, para comer...")
-    time.sleep(1)
+    time.sleep(0.5)
     eatPos = util.waitGetMouseStopped()
 
     while True:
