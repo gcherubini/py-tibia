@@ -10,12 +10,12 @@ CONFIG = loadConfigFromJson()
 #### START EXTRA CONFIG
 extraConfig = AnomObject(
     logoutWhenNotAlone = True, 
-    runeMagicSpell = 'adori vita vis',
+    runeMagicSpell = 'adori gran flam',
     mlTrainingSpell = 'exura',
     faceDirectionKey = 'a', #a,s,w,d
-    loopsToHarlemShake = 100,
+    loopsToHarlemShake = 9999999999999,
     _currentLoopsWithoutHarlemShake = 0,
-    loopsToEatFood = 50,
+    loopsToEatFood = 100,
     _currentLoopsWithoutEatFood = 0,
     maxRunes = 350,
     _currentRuneCount = 0,
@@ -36,6 +36,7 @@ def hasMana():
     return mana
 
 def doLogout():
+    pyautogui.press('printscreen')
     pyautogui.keyDown('ctrl')
     pyautogui.press('l')
     pyautogui.keyUp('ctrl')
@@ -113,7 +114,9 @@ def start():
     while True:
         checkIsAlone()
         checkMakeRune()
+        checkIsAlone()
         checkHarlemShake()
+        checkIsAlone()
         checkEatFood()
         time.sleep(0.1)
 
