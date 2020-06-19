@@ -10,13 +10,15 @@ CONFIG = loadConfigFromJson()
 #### START EXTRA CONFIG
 extraConfig = AnomObject(
     logoutWhenNotAlone = True, 
-    runeMagicSpell = 'adori gran flam',
+    runeMagicSpell = 'adori gran',
     mlTrainingSpell = 'exura',
     faceDirectionKey = 'a', #a,s,w,d
     loopsToHarlemShake = 9999999999999,
     _currentLoopsWithoutHarlemShake = 0,
     loopsToEatFood = 100,
     _currentLoopsWithoutEatFood = 0,
+    loopsToPullRing = 500,
+    _currentLoopsWithoutPullRing = 0,
     maxRunes = 350,
     _currentRuneCount = 0,
     makeFood = False,
@@ -106,6 +108,18 @@ def checkEatFood():
         eatFood()
         extraConfig._currentLoopsWithoutEatFood = 0
 
+def checkLifeRingPull():
+    extraConfig._currentLoopsWithoutPullRing += 1
+    if extraConfig._currentLoopsWithoutPullRing >= extraConfig.loopsToPullRing:
+        pullRing()
+        extraConfig._currentLoopsWithoutPullRing = 0
+
+def pullRing():        
+    pyautogui.moveTo(CONFIG.backpackRingSlot.x, CONFIG.backpackRingSlot.y)
+    pyautogui.mouseDown(button='left', x=CONFIG.backpackRingSlot.x, y=CONFIG.backpackRingSlot.y)
+    pyautogui.moveTo(CONFIG.inventoryRingSlot.x, CONFIG.inventoryRingSlot.y)
+    pyautogui.mouseUp(button='left', x=CONFIG.inventoryRingSlot.x, y=CONFIG.inventoryRingSlot.y)
+
 def start():
     log("config carregada: " + str(CONFIG))
     time.sleep(3)
@@ -116,8 +130,9 @@ def start():
         checkMakeRune()
         checkIsAlone()
         checkHarlemShake()
-        checkIsAlone()
         checkEatFood()
+        checkIsAlone()
+        checkLifeRingPull()
         time.sleep(0.1)
 
 start()

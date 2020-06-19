@@ -19,10 +19,12 @@ class Position(object):
         return self is not None and other is not None and self.__dict__ == other.__dict__
 
 class Config(object):
-    def __init__(self, battlePos: Position, foodPos: Position, manaPos: Position):
+    def __init__(self, battlePos: Position, foodPos: Position, manaPos: Position, inventoryRingSlot: Position, backpackRingSlot: Position):
         self.battlePos = battlePos
         self.foodPos = foodPos
         self.manaPos = manaPos
+        self.inventoryRingSlot = inventoryRingSlot
+        self.backpackRingSlot = backpackRingSlot
 
     def __str__(self):
         return str(self.__dict__)

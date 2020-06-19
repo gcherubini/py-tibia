@@ -11,31 +11,37 @@ def printConfig(configName, pos):
     print(")")
 
 def start():
-    print("Posicione o mouse onde APARECERÁ PLAYER NO BATTLE..." )
+    print("Posicione o mouse onde APARECERÁ o player na battle..." )
     time.sleep(1)
-
     battlePos = util.waitGetMouseStopped()
-    print("POSICAO E COR DO BATTLE VAZIO: " + str(battlePos))
     time.sleep(0.5)
 
-    print("Posicione o mouse onde DEVE COMER FOOD..." )
+    print("Posicione o mouse no slot de comer food..." )
     time.sleep(1)
-
     foodPos = util.waitGetMouseStopped()
-    print("POSICAO DE ONDE COMER FOOD: " + str(foodPos))
     time.sleep(0.5)
 
-    print("Posicione o mouse onde TEM MANA PRA FAZER A RUNA..." )
+    print("Posicione o mouse onde tem mana (AZUL) para fazer a runa..." )
     time.sleep(1)
-
     manaPos = util.waitGetMouseStopped()
-    print("POSICAO E COR DE ONDE TEM MANA PRA FAZER A RUNA: " + str(manaPos))
+    time.sleep(0.5)
+
+    print("Posicione o mouse no slot de ring do inventário..." )
+    time.sleep(1)
+    inventoryRingSlot = util.waitGetMouseStopped()
+    time.sleep(0.5)
+
+    print("Posicione o mouse no primeiro slot de life ring da sua bp..." )
+    time.sleep(1)
+    backpackRingSlot = util.waitGetMouseStopped()
     time.sleep(0.5)
 
     configObject = util.Config(
         battlePos = battlePos,
         foodPos = foodPos,
-        manaPos = manaPos
+        manaPos = manaPos,
+        inventoryRingSlot = inventoryRingSlot,
+        backpackRingSlot = backpackRingSlot
     )
     util.writeConfigJson(configObject)
     savedConfig = util.loadConfigFromJson()
