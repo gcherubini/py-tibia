@@ -130,9 +130,10 @@ def start():
         checkMakeRune()
         checkIsAlone()
         checkHarlemShake()
+        checkIsAlone()
         checkEatFood()
         checkIsAlone()
         checkLifeRingPull()
-        time.sleep(0.1)
+        checkIsAlone()
 
 start()
