@@ -5,6 +5,7 @@ import json
 import jsonpickle
 
 CONFIG_FILE_NAME = './config.json'
+CONFIG_FISHING_FILE_NAME = './config_fishing.json'
 
 class Position(object):
     def __init__(self, x: int, y: int, color: str):
@@ -25,6 +26,22 @@ class Config(object):
         self.manaPos = manaPos
         self.inventoryRingSlot = inventoryRingSlot
         self.backpackRingSlot = backpackRingSlot
+
+    def __str__(self):
+        return str(self.__dict__)
+
+    def __eq__(self, other):
+        return self is not None and other is not None and self.__dict__ == other.__dict__
+
+class ConfigFishing(object):
+    def __init__(self, fishingRodPos: Position, fishingPos1: Position, fishingPos2: Position, fishingPos3: Position, fishingPos4: Position, fishingPos5: Position, eatFoodPos: Position):
+        self.fishingRodPos = fishingRodPos
+        self.fishingPos1 = fishingPos1
+        self.fishingPos2 = fishingPos2
+        self.fishingPos3 = fishingPos3
+        self.fishingPos4 = fishingPos4
+        self.fishingPos5 = fishingPos5
+        self.eatFoodPos = eatFoodPos
 
     def __str__(self):
         return str(self.__dict__)
@@ -79,6 +96,11 @@ def waitGetMouseStopped():
     print("posição identificada!")
     return newPosition
 
+def writeFishingConfigJson(config):
+    jsonStr = jsonpickle.encode(config)
+    with open(CONFIG_FISHING_FILE_NAME, 'w') as f:
+        f.write(jsonStr)
+
 def writeConfigJson(config):
     jsonStr = jsonpickle.encode(config)
     with open(CONFIG_FILE_NAME, 'w') as f:
@@ -87,3 +109,7 @@ def writeConfigJson(config):
 def loadConfigFromJson():
     jsonStr = open(CONFIG_FILE_NAME).read()
     return jsonpickle.decode(jsonStr)
+
+def loadFishingConfigFromJson():
+    jsonStr = open(CONFIG_FISHING_FILE_NAME).read()
+    return jsonpickle.decode(jsonStr)   

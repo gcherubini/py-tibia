@@ -10,26 +10,29 @@ CONFIG = loadConfigFromJson()
 #### START EXTRA CONFIG
 extraConfig = AnomObject(
     logoutWhenNotAlone = True, 
-    runeMagicSpell = 'adori gran',
+    runeMagicSpell = 'adori gran flam',
     mlTrainingSpell = 'exura',
     faceDirectionKey = 'a', #a,s,w,d
-    loopsToHarlemShake = 9999999999999,
+    loopsToHarlemShake = 5000,
     _currentLoopsWithoutHarlemShake = 0,
-    loopsToEatFood = 100,
+    loopsToEatFood = 300,
     _currentLoopsWithoutEatFood = 0,
     loopsToPullRing = 500,
     _currentLoopsWithoutPullRing = 0,
-    maxRunes = 350,
+    maxRunes = 60,
     _currentRuneCount = 0,
     makeFood = False,
-    runesToExevoPan = 3,
+    runesToExevoPan = 9999999,
     _currentRuneToExevoPanCount = 0,
+    numberOfRunesToMakeInEachLoop = 1
 )
 #### END EXTRA CONFIG
 
 def isAlone():
     battleColor = rgbToHex(pyautogui.pixel(CONFIG.battlePos.x,CONFIG.battlePos.y))
     alone = battleColor == CONFIG.battlePos.color
+    if alone == False:
+        log("Não esta sozinho!!!")
     return alone
 
 def hasMana():
@@ -42,20 +45,6 @@ def doLogout():
     pyautogui.keyDown('ctrl')
     pyautogui.press('l')
     pyautogui.keyUp('ctrl')
-
-def makeRune():
-    if extraConfig._currentRuneCount < extraConfig.maxRunes:
-        extraConfig._currentRuneCount += 1
-        log("fazendo runa")
-        pyautogui.press("enter")
-        pyautogui.typewrite(extraConfig.runeMagicSpell)
-        pyautogui.press("enter")
-    else:
-        log("treinando ml")
-        pyautogui.press("enter")
-        pyautogui.typewrite(extraConfig.mlTrainingSpell)
-        pyautogui.press("enter")
-
 
 def doHarlemShake():
     pyautogui.keyDown('ctrl')
@@ -94,7 +83,25 @@ def checkMakeRune():
         if shouldDoExevoPan():
             doExevoPan()
         else:
+            checkMakeRune2()
+
+def checkMakeRune2():
+    if extraConfig._currentRuneCount < extraConfig.maxRunes:
+        for i in range(extraConfig.numberOfRunesToMakeInEachLoop):
             makeRune()
+            time.sleep(2)
+    else:
+        log("treinando ml")
+        pyautogui.press("enter")
+        pyautogui.typewrite(extraConfig.mlTrainingSpell)
+        pyautogui.press("enter")
+
+def makeRune():
+    extraConfig._currentRuneCount += 1
+    log("fazendo runa")
+    pyautogui.press("enter")
+    pyautogui.typewrite(extraConfig.runeMagicSpell)
+    pyautogui.press("enter")
 
 def checkHarlemShake():
     extraConfig._currentLoopsWithoutHarlemShake += 1
