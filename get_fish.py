@@ -1,7 +1,9 @@
 import pyautogui
 import time
 import util
+import random
 from util import loadFishingConfigFromJson
+from util import Position
 
 pyautogui.PAUSE = 0.11
 pyautogui.FAILSAFE = True
@@ -16,22 +18,24 @@ def moveToAndClick(pos, rightClick):
     else:
         pyautogui.leftClick(pos.x, pos.y)
 
-def fishing(fishingRodPos, fishingPos1, fishingPos2, fishingPos3, fishingPos4, fishingPos5, eatPos):
+def fishing(fishingRodPos, fishingPos1, fishingPos2, eatPos):
     print("pescando...")
-    moveToAndClick(fishingRodPos, True)
-    moveToAndClick(fishingPos1, False)
-    moveToAndClick(fishingRodPos, True)
-    moveToAndClick(fishingPos2, False)
-    moveToAndClick(fishingRodPos, True)
+    
+    for i in range(30):
+        moveToAndClick(fishingRodPos, True)
+
+        time.sleep(0.3)
+
+        x = random.randint(fishingPos1.x,fishingPos2.x)
+        y = random.randint(fishingPos1.y,fishingPos2.y)
+        pos = Position(x=x, y=y, color="")
+
+        moveToAndClick(pos, False)
+
     time.sleep(0.5)
-    moveToAndClick(fishingPos3, False)
-    moveToAndClick(fishingRodPos, True)
-    moveToAndClick(fishingPos4, False)
-    moveToAndClick(fishingRodPos, True)
-    moveToAndClick(fishingPos5, False)
+
     print("comendo...")
     moveToAndClick(eatPos, True)
-    time.sleep(1)
 
 def start():
     while True:
@@ -39,9 +43,6 @@ def start():
             CONFIG.fishingRodPos, 
             CONFIG.fishingPos1, 
             CONFIG.fishingPos2, 
-            CONFIG.fishingPos3, 
-            CONFIG.fishingPos4,
-            CONFIG.fishingPos5,
             CONFIG.eatFoodPos)
 
 start()

@@ -34,13 +34,10 @@ class Config(object):
         return self is not None and other is not None and self.__dict__ == other.__dict__
 
 class ConfigFishing(object):
-    def __init__(self, fishingRodPos: Position, fishingPos1: Position, fishingPos2: Position, fishingPos3: Position, fishingPos4: Position, fishingPos5: Position, eatFoodPos: Position):
+    def __init__(self, fishingRodPos: Position, fishingPos1: Position, fishingPos2: Position, eatFoodPos: Position):
         self.fishingRodPos = fishingRodPos
         self.fishingPos1 = fishingPos1
         self.fishingPos2 = fishingPos2
-        self.fishingPos3 = fishingPos3
-        self.fishingPos4 = fishingPos4
-        self.fishingPos5 = fishingPos5
         self.eatFoodPos = eatFoodPos
 
     def __str__(self):

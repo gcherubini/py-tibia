@@ -16,29 +16,14 @@ def start():
     fishingRodPos = util.waitGetMouseStopped()
     time.sleep(0.5)
 
-    print("Posicione o mouse na água em outro lugar onde deve pescar.." )
+    print("Posicione o mouse no limite TOPO ESQUERDO da água de onde deve pescar.." )
     time.sleep(1)
     fishingPos1 = util.waitGetMouseStoppedInWater()
     time.sleep(0.5)
 
-    print("Posicione o mouse na água em outro lugar onde deve pescar..." )
+    print("Posicione o mouse no limite BAIXO DIREITO da água de onde deve pescar.." )
     time.sleep(1)
     fishingPos2 = util.waitGetMouseStoppedInWater()
-    time.sleep(0.5)
-
-    print("Posicione o mouse na água em outro lugar onde deve pescar..." )
-    time.sleep(1)
-    fishingPos3 = util.waitGetMouseStoppedInWater()
-    time.sleep(0.5)
-
-    print("Posicione o mouse na água em outro lugar onde deve pescar..." )
-    time.sleep(1)
-    fishingPos4 = util.waitGetMouseStoppedInWater()
-    time.sleep(0.5)
-
-    print("Posicione o mouse na água em outro lugar onde deve pescar..." )
-    time.sleep(1)
-    fishingPos5 = util.waitGetMouseStoppedInWater()
     time.sleep(0.5)
 
     print("Posicione o mouse onde está sua comida, para comer..." )
@@ -51,9 +36,6 @@ def start():
         fishingRodPos = fishingRodPos,
         fishingPos1 = fishingPos1,
         fishingPos2 = fishingPos2,
-        fishingPos3 = fishingPos3,
-        fishingPos4 = fishingPos4,
-        fishingPos5 = fishingPos5,
         eatFoodPos = eatFoodPos
     )
     util.writeFishingConfigJson(configObject)
